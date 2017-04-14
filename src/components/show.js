@@ -1,12 +1,30 @@
 import React from 'react';
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
-export default class Show extends Component {
+class Show extends Component {
+
   render() {
+
+    const book = this.props.book[0].volumeInfo;
+
     return (
         <div className="show-component">
-          Show
+          {book.title}
+          <Link className="btn btn-default" to="/">
+            Back
+          </Link>
         </div>
+
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    book : state.book
+  };
+}
+
+export default connect(mapStateToProps)(Show);

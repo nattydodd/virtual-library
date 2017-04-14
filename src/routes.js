@@ -8,6 +8,6 @@ import Show from './components/show';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Search} />
-    <Route path="/show" component={Show} />
+    <Route path="books/:id" component={Show} />
   </Route>
 );

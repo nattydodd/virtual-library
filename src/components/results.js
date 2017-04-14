@@ -1,6 +1,8 @@
 import React from 'react';
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { selectBook } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 class Results extends Component {
 
@@ -13,18 +15,31 @@ class Results extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    this.setState({
-      results : nextprops.results[0]
-    });
+    if (nextprops.results) {
+      this.setState({
+        results : nextprops.results[0]
+      });
+    }
+  }
+
+  handleSelect(book) {
+    console.log(book);
+    this.props.selectBook(book);
+    this.context.router.push(`/books/${book.id}`);
   }
 
   renderResults(results) {
-    console.log(results)
     return results.map((book) => {
       return (
-        <tr key={book.id}>
-          <td>{book.volumeInfo.title}</td>
-        </tr>
+          <tr
+            className="result-details"
+            key={book.id}
+            onClick={() => this.handleSelect(book)}>
+            <td>{book.volumeInfo.title}</td>
+            <td>{book.volumeInfo.subtitle}</td>
+            <td>{book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'N/A' }</td>
+            <td>{book.volumeInfo.publishedDate}</td>
+          </tr>
       );
     });
   }
@@ -39,11 +54,11 @@ class Results extends Component {
 
     return (
       <div className="results-component">
-        <table className="results-table">
+        <table className="table-striped results-table">
           <thead>
             <tr>
               <th>Title</th>
-              <th>SubTitle</th>
+              <th>Subtitle</th>
               <th>Authors</th>
               <th>Publication Date</th>
             </tr>
@@ -58,10 +73,18 @@ class Results extends Component {
 
 }
 
+Results.contextTypes = {
+  router: PropTypes.object
+};
+
 function mapStateToProps(state) {
   return {
     results : state.results
   };
 }
 
-export default connect(mapStateToProps)(Results);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({selectBook}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
