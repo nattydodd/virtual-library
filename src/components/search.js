@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { fetchBooks } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Results from './results';
 
 class Search extends Component {
 
@@ -40,6 +41,9 @@ class Search extends Component {
                  </span>
               </div>
             </div>
+          </div>
+          <div className="row">
+            <Results />
           </div>
         </div>
     );
