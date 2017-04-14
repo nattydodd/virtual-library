@@ -4,7 +4,7 @@ import { Component } from 'react';
 export default class Show extends Component {
   render() {
     return (
-        <div className="search-component">
+        <div className="show-component">
           Show
         </div>
     );
