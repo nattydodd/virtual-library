@@ -11,10 +11,16 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      value : ''
+      value : this.props.searchTerm
     }
 
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.value !== '') {
+      this.props.fetchBooks(this.state.value)
+    }
   }
 
   handleChange(event) {
@@ -55,4 +61,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetchBooks}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Search);
+function mapStateToProps(state) {
+  return {
+    searchTerm : state.searchTerm
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
