@@ -46,21 +46,20 @@ class Results extends Component {
   }
 
   render() {
-// needs to be refactored if search returns no results
-
+    // If the search hasn't started yet
     if (this.state.results === undefined || this.state.results.length === 0) {
       return (
         <div></div>
       );
     }
-
+    // If the search has returned no results
     if (this.state.results === 'No Results Found' ) {
       return (
         <div>No Results Found</div>
       );
     }
 
-
+    // If the search returns results
     return (
       <div className="results-component">
         <table className="table-striped results-table">

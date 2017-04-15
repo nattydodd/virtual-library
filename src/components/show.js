@@ -16,7 +16,6 @@ class Show extends Component {
             Back
           </Link>
         </div>
-
     );
   }
 }

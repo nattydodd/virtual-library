@@ -18,6 +18,8 @@ class Search extends Component {
   }
 
   componentDidMount() {
+    // when the component mounts, if the search term has been defined previously
+    // fetch the same results from the previous search
     if (this.state.value !== '') {
       this.props.fetchBooks(this.state.value)
     }
