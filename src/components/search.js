@@ -27,8 +27,8 @@ class Search extends Component {
     this.setState({
       value: event.target.value
     });
-    this.props.fetchBooks(event.target.value)
   }
+
 
   render() {
     return (
@@ -36,15 +36,15 @@ class Search extends Component {
           <div className="row">
             <div className="col-sm-4 col-sm-offset-4">
               <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search for a book"
-                  onChange={this.handleChange}
-                  value={this.state.value} />
-                  <span className="input-group-btn">
-                   <button className="btn btn-default" type="button">Search</button>
-                 </span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search for a book"
+                    onChange={this.handleChange}
+                    value={this.state.value} />
+                    <span className="input-group-btn">
+                     <button className="btn btn-default" type="button" onClick={() => this.props.fetchBooks(this.state.value)}>Search</button>
+                   </span>
               </div>
             </div>
           </div>

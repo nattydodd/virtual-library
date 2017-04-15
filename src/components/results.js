@@ -47,15 +47,15 @@ class Results extends Component {
 
   render() {
 // needs to be refactored if search returns no results
-    if (this.state.results.length === 0) {
-      return (
-        <div></div>
-      );
-    }
-
     if (this.state.results == 'no results found') {
       return (
         <div>No Results Found</div>
+      );
+    }
+    
+    if (this.state.results.length === 0) {
+      return (
+        <div></div>
       );
     }
 
