@@ -9,6 +9,7 @@ export default function(state = INITIAL_STATE, action) {
   case FETCH_BOOK:
     return state = [action.payload.data.items]
   case RESET_SEARCH:
+    console.log('resetting')
     return state = []
   case NO_RESULTS:
     return state = ['no results found'];

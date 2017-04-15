@@ -52,8 +52,8 @@ class Results extends Component {
         <div>No Results Found</div>
       );
     }
-    
-    if (this.state.results.length === 0) {
+
+    if (this.state.results === undefined || this.state.results.length === 0) {
       return (
         <div></div>
       );

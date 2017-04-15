@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { fetchBooks } from '../actions/index';
+import { fetchBooks, resetSearch } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Results from './results';
@@ -23,6 +23,13 @@ class Search extends Component {
     }
   }
 
+  componentWillReceiveProps(nextprops) {
+    console.log(`nextprops`, nextprops.searchTerm);
+      this.setState({
+        value : nextprops.searchTerm
+      });
+  }
+
   handleChange(event) {
     this.setState({
       value: event.target.value
@@ -35,6 +42,7 @@ class Search extends Component {
         <div className="search-component">
           <div className="row">
             <div className="col-sm-4 col-sm-offset-4">
+             <button className="btn btn-default" type="button" onClick={() => this.props.resetSearch()}>Reset Search</button>
               <div className="input-group">
                   <input
                     type="text"
@@ -42,6 +50,7 @@ class Search extends Component {
                     placeholder="Search for a book"
                     onChange={this.handleChange}
                     value={this.state.value} />
+
                     <span className="input-group-btn">
                      <button className="btn btn-default" type="button" onClick={() => this.props.fetchBooks(this.state.value)}>Search</button>
                    </span>
@@ -58,7 +67,7 @@ class Search extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchBooks}, dispatch)
+  return bindActionCreators({fetchBooks, resetSearch}, dispatch)
 }
 
 function mapStateToProps(state) {

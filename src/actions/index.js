@@ -5,6 +5,7 @@ export const RESET_SEARCH = 'RESET_SEARCH';
 export const SELECT_BOOK = 'SELECT_BOOK';
 export const STORE_SEARCH_TERM = 'STORE_SEARCH_TERM';
 export const NO_RESULTS = 'NO_RESULTS';
+export const RESET_SEARCH_TERM = 'RESET_SEARCH_TERM';
 
 const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
 
@@ -42,9 +43,22 @@ export function fetchBooks(props) {
   }
 }
 
-export function resetSearch() {
+function resetResults() {
   return {
     type: RESET_SEARCH
+  }
+}
+
+function resetSearchTerm() {
+  return {
+    type: RESET_SEARCH_TERM
+  }
+}
+
+export function resetSearch() {
+  return function(dispatch) {
+    dispatch(resetResults());
+    dispatch(resetSearchTerm());
   }
 }
 
