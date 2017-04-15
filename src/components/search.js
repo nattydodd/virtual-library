@@ -11,7 +11,7 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      value : this.props.searchTerm
+      value : this.props.searchTerm,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -36,13 +36,21 @@ class Search extends Component {
     });
   }
 
+  handleReset() {
+    this.props.resetSearch();
+  }
+
+  handleSubmit(value) {
+    this.props.fetchBooks(value);
+  }
+
 
   render() {
     return (
         <div className="search-component">
           <div className="row">
             <div className="col-sm-4 col-sm-offset-4">
-             <button className="btn btn-default" type="button" onClick={() => this.props.resetSearch()}>Reset Search</button>
+             <button className="btn btn-default" type="button" onClick={() => this.handleReset()}>Reset Search</button>
               <div className="input-group">
                   <input
                     type="text"
@@ -52,7 +60,7 @@ class Search extends Component {
                     value={this.state.value} />
 
                     <span className="input-group-btn">
-                     <button className="btn btn-default" type="button" onClick={() => this.props.fetchBooks(this.state.value)}>Search</button>
+                     <button className="btn btn-default" type="button" onClick={() => this.handleSubmit(this.state.value)}>Search</button>
                    </span>
               </div>
             </div>

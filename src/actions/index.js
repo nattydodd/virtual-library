@@ -4,7 +4,7 @@ export const FETCH_BOOK = 'FETCH_BOOK';
 export const RESET_SEARCH = 'RESET_SEARCH';
 export const SELECT_BOOK = 'SELECT_BOOK';
 export const STORE_SEARCH_TERM = 'STORE_SEARCH_TERM';
-export const NO_RESULTS = 'NO_RESULTS';
+export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 export const RESET_SEARCH_TERM = 'RESET_SEARCH_TERM';
 
 const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
@@ -23,9 +23,10 @@ function storeSearchTerm(props) {
   }
 }
 
-function noResults() {
+function errorMessage(err) {
   return {
-    type: NO_RESULTS
+    type: ERROR_MESSAGE,
+    payload: err
   }
 }
 
@@ -37,7 +38,6 @@ export function fetchBooks(props) {
         dispatch(storeSearchTerm(props));
       })
       .catch((err) => {
-        dispatch(noResults());
         console.log(`fail:`, err);
       })
   }
