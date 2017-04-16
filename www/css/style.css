@@ -6,3 +6,6 @@
 
 .result-details {
   table-layout: fixed; }
+
+.no-button {
+  display: none; }
