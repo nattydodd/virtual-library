@@ -39,7 +39,7 @@ function errorMessage(err) {
 
 export function fetchBooks(props) {
   return function(dispatch) {
-    const request = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${props}&key=${GB_API_KEY}`)
+    const request = axios.get(`https://www.googleapis.com/books/v1/volumes?q='${props}'&key=${GB_API_KEY}`)
       .then((request) => {
         dispatch(storeResults(request));
         dispatch(storeSearchTerm(props));

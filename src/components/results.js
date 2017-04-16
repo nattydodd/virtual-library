@@ -10,7 +10,8 @@ class Results extends Component {
     super(props);
 
     this.state = {
-      results: []
+      results: [],
+      sorted: 'initial'
     }
   }
 
@@ -18,7 +19,8 @@ class Results extends Component {
   componentWillReceiveProps(nextprops) {
     if (nextprops.results) {
       this.setState({
-        results : nextprops.results[0]
+        results : nextprops.results[0],
+        sorted: 'initial'
       });
     }
   }
@@ -29,7 +31,17 @@ class Results extends Component {
     this.context.router.push(`/books/${book.id}`);
   }
 
+  sortResults() {
+    var toggleSorting = this.state.sorted === 'initial' || 'ascending' ? 'descending' : 'ascending'
+    this.setState({
+      sorted : toggleSorting
+    });
+  }
+
   renderResults(results) {
+    if (this.state.sorted !== 'initial') {
+      results = results.reverse();
+    }
     return results.map((book) => {
       return (
           <tr
@@ -52,7 +64,7 @@ class Results extends Component {
         <div>Loading</div>
       );
     }
-    
+
     if (this.state.results === undefined || this.state.results.length === 0) {
       return (
         <div></div>
@@ -72,7 +84,7 @@ class Results extends Component {
         <table className="table-striped results-table">
           <thead>
             <tr>
-              <th>Title</th>
+              <th onClick={() => this.sortResults()}>Title</th>
               <th>Subtitle</th>
               <th>Authors</th>
               <th>Publication Date</th>
