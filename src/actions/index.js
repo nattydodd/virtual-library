@@ -7,8 +7,17 @@ export const STORE_SEARCH_TERM = 'STORE_SEARCH_TERM';
 export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 export const RESET_SEARCH_TERM = 'RESET_SEARCH_TERM';
 export const REQUEST_RESULTS = 'REQUEST_RESULTS';
+export const SET_START_INDEX = 'SET_START_INDEX';
+export const RESET_START_INDEX = 'RESET_START_INDEX';
 
 const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
+
+export function setStartIndex(index) {
+  return {
+    type: SET_START_INDEX,
+    payload: index
+  }
+}
 
 export function requestResults() {
   return {
@@ -43,7 +52,6 @@ export function fetchBooks(props, startIndex, itemsPerPage) {
     searchQuery = props.split(' ').join('+');
   }
   return function(dispatch) {
-    console.log(`startIndex:`, startIndex)
     const request = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&startIndex=${startIndex}&maxResults=${itemsPerPage}&key=${GB_API_KEY}`)
       .then((request) => {
         dispatch(storeResults(request));
@@ -70,10 +78,17 @@ function resetSearchTerm() {
   }
 }
 
+function resetStartIndex() {
+  return {
+    type: RESET_START_INDEX
+  }
+}
+
 export function resetSearch() {
   return function(dispatch) {
     dispatch(resetResults());
     dispatch(resetSearchTerm());
+    dispatch(resetStartIndex());
   }
 }
 

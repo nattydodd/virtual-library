@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { fetchBooks, resetSearch, requestResults } from '../actions/index';
+import { fetchBooks, resetSearch, requestResults, setStartIndex } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Results from './results';
@@ -12,7 +12,7 @@ class Search extends Component {
 
     this.state = {
       value : this.props.searchTerm,
-      startIndex : 0,
+      startIndex : this.props.startIndex,
       itemsPerPage : 10
     }
 
@@ -65,6 +65,7 @@ class Search extends Component {
   handleNext() {
     this.props.requestResults();
     var newStartIndex = this.state.startIndex + this.state.itemsPerPage
+    this.props.setStartIndex(newStartIndex);
     this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage, this.state.itemsPerPage)
 
     this.setState({
@@ -77,6 +78,7 @@ class Search extends Component {
   handleBack() {
     this.props.requestResults();
     var newStartIndex = this.state.startIndex - this.state.itemsPerPage
+    this.props.setStartIndex(newStartIndex)
     this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage)
 
     this.setState({
@@ -127,12 +129,13 @@ class Search extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchBooks, resetSearch, requestResults}, dispatch)
+  return bindActionCreators({fetchBooks, resetSearch, requestResults, setStartIndex}, dispatch)
 }
 
 function mapStateToProps(state) {
   return {
-    searchTerm : state.searchTerm
+    searchTerm : state.searchTerm,
+    startIndex : state.startIndex
   }
 }
 
