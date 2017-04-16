@@ -60,6 +60,12 @@ class Results extends Component {
 
 
   render() {
+
+    if (this.props.errors !== '') {
+      return (
+        <div>Invalid Search: {this.props.errors}</div>
+      );
+    }
     // if the search is in process but hasn't found results yet
     if (this.props.isFetching) {
       return (
@@ -112,6 +118,7 @@ function mapStateToProps(state) {
   return {
     results : state.results,
     isFetching : state.isFetching,
+    errors : state.errors
   };
 }
 

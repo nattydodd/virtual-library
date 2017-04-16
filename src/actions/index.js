@@ -33,12 +33,15 @@ function storeSearchTerm(props) {
 function errorMessage(err) {
   return {
     type: ERROR_MESSAGE,
-    payload: err
+    payload: err.response.data
   }
 }
 
 export function fetchBooks(props, startIndex, itemsPerPage) {
-  var searchQuery = props.split(' ').join('+');
+  var searchQuery = ''
+  if (props != undefined) {
+    searchQuery = props.split(' ').join('+');
+  }
   return function(dispatch) {
     console.log(`startIndex:`, startIndex)
     const request = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&startIndex=${startIndex}&maxResults=${itemsPerPage}&key=${GB_API_KEY}`)
@@ -47,8 +50,11 @@ export function fetchBooks(props, startIndex, itemsPerPage) {
         dispatch(storeSearchTerm(props));
       })
       .catch((err) => {
-        console.log(`fail:`, err);
-      })
+        console.log(`fail:`, err.response);
+        if (err.response.status === 400) {
+          dispatch(errorMessage(err));
+        }
+      });
   }
 }
 
