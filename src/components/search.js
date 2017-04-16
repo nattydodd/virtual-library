@@ -12,10 +12,12 @@ class Search extends Component {
 
     this.state = {
       value : this.props.searchTerm,
-      startIndex : 0
+      startIndex : 0,
+      itemsPerPage : 10
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleItemsPPChange = this.handleItemsPPChange.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +25,7 @@ class Search extends Component {
     // fetch the same results from the previous search
     if (this.state.value !== '') {
       this.props.requestResults();
-      this.props.fetchBooks(this.state.value, this.state.startIndex)
+      this.props.fetchBooks(this.state.value, this.state.startIndex, 10)
     }
   }
 
@@ -46,17 +48,24 @@ class Search extends Component {
 
   handleSubmit(value) {
     this.props.requestResults();
-    this.props.fetchBooks(value, 0);
+    this.props.fetchBooks(value, 0, this.state.itemsPerPage);
     this.setState({
       startIndex : 0
     })
+  }
+
+  handleItemsPPChange(event) {
+    this.props.fetchBooks(this.state.value, this.state.startIndex, event.target.value);
+    this.setState({
+      itemsPerPage : event.target.value
+    });
   }
 
 
   handleNext() {
     this.props.requestResults();
     var newStartIndex = this.state.startIndex + 10
-    this.props.fetchBooks(this.state.value, newStartIndex)
+    this.props.fetchBooks(this.state.value, newStartIndex, this.state.itemsPerPage, this.state.itemsPerPage)
 
     this.setState({
       startIndex : newStartIndex
@@ -68,7 +77,7 @@ class Search extends Component {
   handleBack() {
     this.props.requestResults();
     var newStartIndex = this.state.startIndex - 10
-    this.props.fetchBooks(this.state.value, newStartIndex)
+    this.props.fetchBooks(this.state.value, newStartIndex, this.state.itemsPerPage)
 
     this.setState({
       startIndex : newStartIndex
@@ -80,6 +89,14 @@ class Search extends Component {
     return (
         <div className="search-component">
           <div className="row">
+            <div className="search-items-per-page">
+              <select value={this.state.itemsPerPage} onChange={this.handleItemsPPChange}>
+                <option default>10</option>
+                <option default>20</option>
+                <option default>30</option>
+                <option default>40</option>
+              </select>
+            </div>
             <div className="col-sm-4 col-sm-offset-4">
              <button className="btn btn-default" type="button" onClick={() => this.handleReset()}>Reset Search</button>
               <div className="input-group">
@@ -99,7 +116,9 @@ class Search extends Component {
           <div className="row">
             <Results
              onNextClick = {this.handleNext.bind(this)}
-             onBackClick = {this.handleBack.bind(this)} />
+             onBackClick = {this.handleBack.bind(this)}
+             startIndex = {this.state.startIndex}
+             itemsPerPage = {this.state.itemsPerPage} />
           </div>
         </div>
     );

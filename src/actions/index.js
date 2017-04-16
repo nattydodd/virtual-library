@@ -37,10 +37,10 @@ function errorMessage(err) {
   }
 }
 
-export function fetchBooks(props, startIndex) {
+export function fetchBooks(props, startIndex, itemsPerPage) {
   return function(dispatch) {
     console.log(`startIndex:`, startIndex)
-    const request = axios.get(`https://www.googleapis.com/books/v1/volumes?q='${props}'&startIndex=${startIndex}&key=${GB_API_KEY}`)
+    const request = axios.get(`https://www.googleapis.com/books/v1/volumes?q='${props}'&startIndex=${startIndex}&maxResults=${itemsPerPage}&key=${GB_API_KEY}`)
       .then((request) => {
         dispatch(storeResults(request));
         dispatch(storeSearchTerm(props));
