@@ -64,7 +64,7 @@ class Search extends Component {
 
   handleNext() {
     this.props.requestResults();
-    var newStartIndex = this.state.startIndex + 10
+    var newStartIndex = this.state.startIndex + this.state.itemsPerPage
     this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage, this.state.itemsPerPage)
 
     this.setState({
@@ -76,7 +76,7 @@ class Search extends Component {
 
   handleBack() {
     this.props.requestResults();
-    var newStartIndex = this.state.startIndex - 10
+    var newStartIndex = this.state.startIndex - this.state.itemsPerPage
     this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage)
 
     this.setState({
