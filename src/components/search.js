@@ -25,7 +25,7 @@ class Search extends Component {
     // fetch the same results from the previous search
     if (this.state.value !== '') {
       this.props.requestResults();
-      this.props.fetchBooks(this.state.value, this.state.startIndex, 10)
+      this.props.fetchBooks(this.state.value[0], this.state.startIndex, 10)
     }
   }
 
@@ -55,7 +55,7 @@ class Search extends Component {
   }
 
   handleItemsPPChange(event) {
-    this.props.fetchBooks(this.state.value, this.state.startIndex, event.target.value);
+    this.props.fetchBooks(this.state.value[0], this.state.startIndex, event.target.value);
     this.setState({
       itemsPerPage : event.target.value
     });
@@ -65,7 +65,7 @@ class Search extends Component {
   handleNext() {
     this.props.requestResults();
     var newStartIndex = this.state.startIndex + 10
-    this.props.fetchBooks(this.state.value, newStartIndex, this.state.itemsPerPage, this.state.itemsPerPage)
+    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage, this.state.itemsPerPage)
 
     this.setState({
       startIndex : newStartIndex
@@ -77,7 +77,7 @@ class Search extends Component {
   handleBack() {
     this.props.requestResults();
     var newStartIndex = this.state.startIndex - 10
-    this.props.fetchBooks(this.state.value, newStartIndex, this.state.itemsPerPage)
+    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage)
 
     this.setState({
       startIndex : newStartIndex
