@@ -6,7 +6,7 @@ const INITIAL_STATE = 0;
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
   case SET_START_INDEX :
-    return state = action.payload
+    return state = parseInt(action.payload)
   case RESET_START_INDEX:
     return state = INITIAL_STATE
   default:

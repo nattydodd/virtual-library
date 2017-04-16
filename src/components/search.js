@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { fetchBooks, resetSearch, requestResults, setStartIndex } from '../actions/index';
+import { fetchBooks, resetSearch, requestResults, setStartIndex, setItemsPP } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Results from './results';
@@ -13,7 +13,7 @@ class Search extends Component {
     this.state = {
       value : this.props.searchTerm,
       startIndex : this.props.startIndex,
-      itemsPerPage : 10
+      itemsPerPage : this.props.itemsPerPage
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +25,7 @@ class Search extends Component {
     // fetch the same results from the previous search
     if (this.state.value !== '') {
       this.props.requestResults();
-      this.props.fetchBooks(this.state.value[0], this.state.startIndex, 10)
+      this.props.fetchBooks(this.state.value[0], this.state.startIndex, this.state.itemsPerPage)
     }
   }
 
@@ -55,18 +55,20 @@ class Search extends Component {
   }
 
   handleItemsPPChange(event) {
+    this.props.setItemsPP(parseInt(event.target.value));
     this.props.fetchBooks(this.state.value[0], this.state.startIndex, event.target.value);
     this.setState({
-      itemsPerPage : event.target.value
+      itemsPerPage : parseInt(event.target.value)
     });
   }
 
 
   handleNext() {
     this.props.requestResults();
-    var newStartIndex = this.state.startIndex + this.state.itemsPerPage
+    var newStartIndex = this.state.startIndex + this.state.itemsPerPage;
+    newStartIndex = newStartIndex < 0 ? 0 : newStartIndex;
     this.props.setStartIndex(newStartIndex);
-    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage, this.state.itemsPerPage)
+    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage);
 
     this.setState({
       startIndex : newStartIndex
@@ -77,9 +79,10 @@ class Search extends Component {
 
   handleBack() {
     this.props.requestResults();
-    var newStartIndex = this.state.startIndex - this.state.itemsPerPage
-    this.props.setStartIndex(newStartIndex)
-    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage)
+    var newStartIndex = this.state.startIndex - this.state.itemsPerPage;
+    newStartIndex = newStartIndex < 0 ? 0 : newStartIndex;
+    this.props.setStartIndex(newStartIndex);
+    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage);
 
     this.setState({
       startIndex : newStartIndex
@@ -118,9 +121,7 @@ class Search extends Component {
           <div className="row">
             <Results
              onNextClick = {this.handleNext.bind(this)}
-             onBackClick = {this.handleBack.bind(this)}
-             startIndex = {this.state.startIndex}
-             itemsPerPage = {this.state.itemsPerPage} />
+             onBackClick = {this.handleBack.bind(this)} />
           </div>
         </div>
     );
@@ -129,13 +130,20 @@ class Search extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchBooks, resetSearch, requestResults, setStartIndex}, dispatch)
+  return bindActionCreators({
+    fetchBooks,
+    resetSearch,
+    requestResults,
+    setStartIndex,
+    setItemsPP
+  }, dispatch)
 }
 
 function mapStateToProps(state) {
   return {
     searchTerm : state.searchTerm,
-    startIndex : state.startIndex
+    startIndex : state.startIndex,
+    itemsPerPage : state.itemsPerPage
   }
 }
 

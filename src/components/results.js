@@ -102,8 +102,8 @@ class Results extends Component {
             {this.renderResults(this.state.results[0].items)}
           </tbody>
         </table>
-        <button className={this.props.startIndex === 0 ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onBackClick() }>Back</button>
-        <button className={this.props.startIndex + parseInt(this.props.itemsPerPage) >= this.state.results[0].totalItems ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onNextClick() }>Next</button>
+        <button className={ this.props.startIndex === 0 ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onBackClick() }>Back</button>
+        <button className={ this.props.startIndex + this.props.itemsPerPage >= parseInt(this.state.results[0].totalItems) ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onNextClick() }>Next</button>
       </div>
     );
   };
@@ -118,7 +118,9 @@ function mapStateToProps(state) {
   return {
     results : state.results,
     isFetching : state.isFetching,
-    errors : state.errors
+    errors : state.errors,
+    itemsPerPage : state.itemsPerPage,
+    startIndex : state.startIndex
   };
 }
 

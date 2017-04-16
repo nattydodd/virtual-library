@@ -9,8 +9,16 @@ export const RESET_SEARCH_TERM = 'RESET_SEARCH_TERM';
 export const REQUEST_RESULTS = 'REQUEST_RESULTS';
 export const SET_START_INDEX = 'SET_START_INDEX';
 export const RESET_START_INDEX = 'RESET_START_INDEX';
+export const SET_ITEMS_PP = 'SET_ITEMS_PP';
 
 const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
+
+export function setItemsPP(number) {
+  return {
+    type: SET_ITEMS_PP,
+    payload: number
+  }
+}
 
 export function setStartIndex(index) {
   return {
