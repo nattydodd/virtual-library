@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { fetchBooks, resetSearch } from '../actions/index';
+import { fetchBooks, resetSearch, requestResults } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Results from './results';
@@ -21,6 +21,7 @@ class Search extends Component {
     // when the component mounts, if the search term has been defined previously
     // fetch the same results from the previous search
     if (this.state.value !== '') {
+      this.props.requestResults();
       this.props.fetchBooks(this.state.value)
     }
   }
@@ -43,6 +44,7 @@ class Search extends Component {
   }
 
   handleSubmit(value) {
+    this.props.requestResults();
     this.props.fetchBooks(value);
   }
 
@@ -77,7 +79,7 @@ class Search extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchBooks, resetSearch}, dispatch)
+  return bindActionCreators({fetchBooks, resetSearch, requestResults}, dispatch)
 }
 
 function mapStateToProps(state) {

@@ -47,6 +47,12 @@ class Results extends Component {
 
   render() {
     // If the search hasn't started yet
+    if (this.props.isFetching) {
+      return (
+        <div>Loading</div>
+      );
+    }
+    
     if (this.state.results === undefined || this.state.results.length === 0) {
       return (
         <div></div>
@@ -58,6 +64,7 @@ class Results extends Component {
         <div>No Results Found</div>
       );
     }
+
 
     // If the search returns results
     return (
@@ -87,7 +94,8 @@ Results.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    results : state.results
+    results : state.results,
+    isFetching : state.isFetching,
   };
 }
 

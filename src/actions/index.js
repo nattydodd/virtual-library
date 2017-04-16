@@ -6,8 +6,15 @@ export const SELECT_BOOK = 'SELECT_BOOK';
 export const STORE_SEARCH_TERM = 'STORE_SEARCH_TERM';
 export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 export const RESET_SEARCH_TERM = 'RESET_SEARCH_TERM';
+export const REQUEST_RESULTS = 'REQUEST_RESULTS';
 
 const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
+
+export function requestResults() {
+  return {
+    type: REQUEST_RESULTS
+  }
+}
 
 function storeResults(response) {
   return {
