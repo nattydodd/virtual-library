@@ -12,6 +12,7 @@ class Search extends Component {
 
     this.state = {
       value : this.props.searchTerm,
+      startIndex : 0
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,7 +23,7 @@ class Search extends Component {
     // fetch the same results from the previous search
     if (this.state.value !== '') {
       this.props.requestResults();
-      this.props.fetchBooks(this.state.value)
+      this.props.fetchBooks(this.state.value, this.state.startIndex)
     }
   }
 
@@ -45,7 +46,33 @@ class Search extends Component {
 
   handleSubmit(value) {
     this.props.requestResults();
-    this.props.fetchBooks(value);
+    this.props.fetchBooks(value, 0);
+    this.setState({
+      startIndex : 0
+    })
+  }
+
+
+  handleNext() {
+    this.props.requestResults();
+    var newStartIndex = this.state.startIndex + 10
+    this.props.fetchBooks(this.state.value, newStartIndex)
+
+    this.setState({
+      startIndex : newStartIndex
+    })
+  }
+
+  // handleNext and handleBack could be refactored into one function
+
+  handleBack() {
+    this.props.requestResults();
+    var newStartIndex = this.state.startIndex - 10
+    this.props.fetchBooks(this.state.value, newStartIndex)
+
+    this.setState({
+      startIndex : newStartIndex
+    })
   }
 
 
@@ -70,7 +97,9 @@ class Search extends Component {
             </div>
           </div>
           <div className="row">
-            <Results />
+            <Results
+             onNextClick = {this.handleNext.bind(this)}
+             onBackClick = {this.handleBack.bind(this)} />
           </div>
         </div>
     );

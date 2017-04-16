@@ -17,9 +17,10 @@ class Results extends Component {
 
 
   componentWillReceiveProps(nextprops) {
+    console.log(nextprops);
     if (nextprops.results) {
       this.setState({
-        results : nextprops.results[0],
+        results : nextprops.results,
         sorted: 'initial'
       });
     }
@@ -57,21 +58,22 @@ class Results extends Component {
     });
   }
 
+
   render() {
-    // If the search hasn't started yet
+    // if the search is in process but hasn't found results yet
     if (this.props.isFetching) {
       return (
         <div>Loading</div>
       );
     }
-
+    // If the search hasn't started yet
     if (this.state.results === undefined || this.state.results.length === 0) {
       return (
         <div></div>
       );
     }
     // If the search has returned no results
-    if (this.state.results === 'No Results Found' ) {
+    if (this.state.results[0].totalItems === 0 ) {
       return (
         <div>No Results Found</div>
       );
@@ -91,9 +93,11 @@ class Results extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.renderResults(this.state.results)}
+            {this.renderResults(this.state.results[0].items)}
           </tbody>
         </table>
+        <button className="btn btn-default" onClick={() => this.props.onBackClick() }>Back</button>
+        <button className="btn btn-default" onClick={() => this.props.onNextClick() }>Next</button>
       </div>
     );
   };

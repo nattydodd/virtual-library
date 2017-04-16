@@ -7,10 +7,8 @@ const INITIAL_STATE = [];
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
   case FETCH_BOOK:
-    if (action.payload.data.items === undefined ) {
-      return state = ['No Results Found']
-    }
-    return state = [action.payload.data.items]
+    console.log(action.payload.data)
+    return state = [action.payload.data]
   case RESET_SEARCH:
     console.log('resetting')
     return state = []
