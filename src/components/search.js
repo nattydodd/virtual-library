@@ -141,7 +141,7 @@ class Search extends Component {
              onNextClick = {this.handleNext.bind(this)}
              onBackClick = {this.handleBack.bind(this)}
              itemsPerPage = {this.state.itemsPerPage}
-             startIndex = {this.state.startIndex } />
+             startIndex = {this.state.startIndex} />
           </div>
         </div>
     );

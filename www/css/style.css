@@ -8,6 +8,9 @@
 .button-container {
   text-align: center; }
 
+.no-results, .is-fetching, .invalid {
+  text-align: center; }
+
 .search-items-per-page {
   margin: 10px; }
 
@@ -20,15 +23,31 @@
 .search-label {
   margin-left: 10px !important; }
 
+.home-subtitle {
+  margin: 10px 0 20px; }
+
+.home-component {
+  margin-top: 100px; }
+
+.home-button-container {
+  text-align: center;
+  margin: 30px 0; }
+
 html {
   font-size: 62.5%; }
   html body, html p, html .form-control {
     font-size: 1.6rem;
     /* =14px */
     font-family: "Abel", sans-serif !important; }
-  html h1, html h2, html h3 {
+  html h3 {
     font-size: 2.4rem;
     /* =24px */
+    font-family: "Asar", serif !important; }
+  html h1 {
+    font-size: 3rem;
+    font-family: "Asar", serif !important; }
+  html h2 {
+    font-size: 2.8rem;
     font-family: "Asar", serif !important; }
 
 .no-button {

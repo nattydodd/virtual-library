@@ -3,6 +3,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const app = express();
+const fallback = require('express-history-api-fallback');
 
 const compiler = webpack(webpackConfig);
 
@@ -17,6 +18,8 @@ app.use(webpackDevMiddleware(compiler, {
   },
   historyApiFallback: true,
 }));
+
+app.use(fallback('/www/index.html', { root: __dirname }));
 
 const server = app.listen(3000, function() {
   const host = server.address().address;

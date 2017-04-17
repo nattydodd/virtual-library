@@ -8,6 +8,7 @@ $primary3_darken: #e98b00;
 
 @import 'results';
 @import 'search';
+@import 'home';
 
 html {
   font-size: 62.5%;
@@ -15,8 +16,16 @@ html {
     font-size: 1.6rem;  /* =14px */
     font-family: $font-sans !important;
   }
-  h1, h2, h3 {
+  h3 {
     font-size: 2.4rem; /* =24px */
+    font-family: $font-serif !important;
+  }
+  h1 {
+    font-size: 3rem;
+    font-family: $font-serif !important;
+  }
+  h2 {
+    font-size: 2.8rem;
     font-family: $font-serif !important;
   }
 }

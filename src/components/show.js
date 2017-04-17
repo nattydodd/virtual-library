@@ -12,7 +12,7 @@ class Show extends Component {
     return (
         <div className="show-component">
           {book.title}
-          <Link className="btn btn-default" to="/">
+          <Link className="btn btn-default" to="/search">
             Back
           </Link>
         </div>

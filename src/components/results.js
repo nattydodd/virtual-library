@@ -63,16 +63,16 @@ class Results extends Component {
 
     if (this.props.errors !== '') {
       return (
-        <div className="container-fluid">
-          Invalid Search: {this.props.errors}
+        <div className="container-fluid invalid">
+          <h3>Invalid Search: {this.props.errors}</h3>
         </div>
       );
     }
     // if the search is in process but hasn't found results yet
     if (this.props.isFetching) {
       return (
-        <div className="container-fluid">
-          Loading
+        <div className="container-fluid is-fetching">
+          <h3>Loading</h3>
         </div>
       );
     }
@@ -86,8 +86,8 @@ class Results extends Component {
     // If the search has returned no results
     if (this.state.results[0].totalItems === 0 ) {
       return (
-        <div className="container-fluid">
-          No Results Found
+        <div className="container-fluid no-results">
+          <h3>No Results Found</h3>
         </div>
       );
     }

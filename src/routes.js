@@ -3,11 +3,13 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/app';
 import Search from './components/search';
 import Show from './components/show';
+import Home from './components/home';
 
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Search} />
+    <IndexRoute component={Home} />
+    <Route path="/search" component={Search} />
     <Route path="books/:id" component={Show} />
   </Route>
 );
