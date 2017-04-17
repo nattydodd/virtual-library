@@ -72,7 +72,7 @@ class Results extends Component {
     if (this.props.isFetching) {
       return (
         <div className="container-fluid is-fetching">
-          <h3>Loading</h3>
+          <h3>Loading...</h3>
         </div>
       );
     }
@@ -87,7 +87,7 @@ class Results extends Component {
     if (this.state.results[0].totalItems === 0 ) {
       return (
         <div className="container-fluid no-results">
-          <h3>No Results Found</h3>
+          <h3>Sorry, No Results Found.</h3>
         </div>
       );
     }

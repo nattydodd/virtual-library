@@ -3,8 +3,13 @@
 $font-serif: 'Asar', serif;
 $font-sans: 'Abel', sans-serif;
 
+$primary1: #339cb7;
+$primary1_darken: #2d859b;
 $primary3: #FF9800;
 $primary3_darken: #e98b00;
+$secondary1: #d5f6ff;
+$secondary3: #ecfbff;
+$secondary2: #fff2de;
 
 @import 'results';
 @import 'search';
@@ -30,6 +35,10 @@ html {
   }
 }
 
+label {
+  margin-bottom: 10px !important;
+}
+
 .no-button {
   display: none;
 }
@@ -38,7 +47,18 @@ html {
   background: $primary3 !important;
   border-color: $primary3_darken !important;
   margin-right: 5px !important;
+  margin-bottom: 10px !important;
   &:hover {
     background: $primary3_darken !important;
+  }
+}
+
+.btn-primary {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: $primary1 !important;
+  border-color: $primary1_darken !important;
+  &:hover {
+    background-color: $primary1_darken !important;
   }
 }

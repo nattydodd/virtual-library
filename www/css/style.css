@@ -1,14 +1,32 @@
-.result-details td, th {
+.results-component {
+  overflow-y: scroll; }
+
+.result-details td, .result-details th {
   min-width: 0.25vw;
   padding: 7px; }
+
+.result-details:hover {
+  cursor: pointer;
+  background: #ecfbff !important; }
+
+.results-table {
+  margin-top: 15px; }
+  .results-table h3 {
+    margin: 0;
+    margin-left: 2px;
+    padding: 5px 10px; }
+  .results-table th {
+    background-color: #fff2de; }
 
 .result-details {
   table-layout: fixed; }
 
 .button-container {
-  text-align: center; }
+  text-align: center;
+  margin: 20px 0; }
 
 .no-results, .is-fetching, .invalid {
+  margin-top: 50px;
   text-align: center; }
 
 .search-items-per-page {
@@ -22,6 +40,12 @@
 
 .search-label {
   margin-left: 10px !important; }
+
+.search-row {
+  background-color: #d5f6ff; }
+
+.search-intro-text {
+  margin-left: 10px; }
 
 .home-subtitle {
   margin: 10px 0 20px; }
@@ -50,12 +74,24 @@ html {
     font-size: 2.8rem;
     font-family: "Asar", serif !important; }
 
+label {
+  margin-bottom: 10px !important; }
+
 .no-button {
   display: none; }
 
 .btn-default {
   background: #FF9800 !important;
   border-color: #e98b00 !important;
-  margin-right: 5px !important; }
+  margin-right: 5px !important;
+  margin-bottom: 10px !important; }
   .btn-default:hover {
     background: #e98b00 !important; }
+
+.btn-primary {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #339cb7 !important;
+  border-color: #2d859b !important; }
+  .btn-primary:hover {
+    background-color: #2d859b !important; }

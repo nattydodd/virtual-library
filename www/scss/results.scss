@@ -1,8 +1,29 @@
 // Results Component
+.results-component {
+  overflow-y: scroll;
+}
 
-.result-details td, th {
-  min-width: 0.25vw;
-  padding: 7px;
+.result-details {
+    td, th {
+    min-width: 0.25vw;
+    padding: 7px;
+  }
+  &:hover {
+    cursor: pointer;
+    background: $secondary3 !important;
+  }
+}
+
+.results-table {
+  margin-top: 15px;
+  h3 {
+    margin: 0;
+    margin-left: 2px;
+    padding: 5px 10px;
+  }
+  th {
+    background-color: $secondary2;
+  }
 }
 
 .result-details {
@@ -11,8 +32,10 @@
 
 .button-container {
   text-align: center;
+  margin: 20px 0;
 }
 
 .no-results, .is-fetching, .invalid {
+  margin-top: 50px;
   text-align: center;
 }

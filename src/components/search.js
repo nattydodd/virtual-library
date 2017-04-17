@@ -4,6 +4,7 @@ import { fetchBooks, resetSearch, requestResults, setStartIndex, setItemsPP } fr
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Results from './results';
+import { Link } from 'react-router';
 
 class Search extends Component {
 
@@ -105,8 +106,15 @@ class Search extends Component {
   render() {
     return (
         <div className="search-component">
-          <div className="row">
+          <div className="row search-row">
+            <div className="col-xs-12 search-intro">
+              <div className="search-intro-text">
+                <h1>Search the Google Books library</h1>
+                <h4>Enter your search term below and browse through the results. Click on a result to view more details.</h4>
+              </div>  
+            </div>
             <div className="col-xs-6 col-sm-3 search-reset">
+              <Link className="btn btn-primary" to="/">Home</Link>
               <button className="btn btn-default" type="button" onClick={() => this.handleReset()}>Reset Search</button>
             </div>
             <div className="col-xs-11 col-xs-offset-1 col-sm-6 col-sm-offset-1 search-bar">

@@ -6,10 +6,8 @@ import Search from './search';
 export default class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <div className="app-component">
+      <div className="container-fluid app-component">
           {this.props.children}
-        </div>
       </div>
     );
   }
