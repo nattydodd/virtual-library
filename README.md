@@ -4,7 +4,7 @@ The decision to use Redux instead of passing the entire state down directly from
 
 Notes:
 - Responsiveness on large screen could be improved.
-- Code refactoring could be improved, components could be broken down into smaller ones 
+- Code refactoring could be improved, components could be broken down into smaller ones
 
 Setup
 * $ npm install
@@ -17,3 +17,4 @@ Dev
 
 Start
 * $ npm start
+(app will be served at localhost:3000)
