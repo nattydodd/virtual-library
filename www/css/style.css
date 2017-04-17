@@ -1,5 +1,4 @@
 .result-details td, th {
-  font-size: 14px;
   max-width: 300px;
   min-width: 300px;
   padding: 7px; }
@@ -7,5 +6,38 @@
 .result-details {
   table-layout: fixed; }
 
+.button-container {
+  text-align: center; }
+
+.search-items-per-page {
+  margin: 10px; }
+
+.search-reset {
+  margin: 10px; }
+
+.search-bar {
+  margin: 10px; }
+
+.search-label {
+  margin-left: 10px !important; }
+
+html {
+  font-size: 62.5%; }
+  html body, html p, html .form-control {
+    font-size: 1.6rem;
+    /* =14px */
+    font-family: "Abel", sans-serif !important; }
+  html h1, html h2, html h3 {
+    font-size: 2.4rem;
+    /* =24px */
+    font-family: "Asar", serif !important; }
+
 .no-button {
   display: none; }
+
+.btn-default {
+  background: #FF9800 !important;
+  border-color: #e98b00 !important;
+  margin-right: 5px !important; }
+  .btn-default:hover {
+    background: #e98b00 !important; }

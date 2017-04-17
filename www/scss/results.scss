@@ -1,0 +1,15 @@
+// Results Component
+
+.result-details td, th {
+  max-width: 300px;
+  min-width: 300px;
+  padding: 7px;
+}
+
+.result-details {
+  table-layout: fixed;
+}
+
+.button-container {
+  text-align: center;
+}

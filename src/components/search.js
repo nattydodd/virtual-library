@@ -94,16 +94,10 @@ class Search extends Component {
     return (
         <div className="search-component">
           <div className="row">
-            <div className="search-items-per-page">
-              <select value={this.state.itemsPerPage} onChange={this.handleItemsPPChange}>
-                <option default>10</option>
-                <option default>20</option>
-                <option default>30</option>
-                <option default>40</option>
-              </select>
+            <div className="col-xs-6 col-sm-3 search-reset">
+              <button className="btn btn-default" type="button" onClick={() => this.handleReset()}>Reset Search</button>
             </div>
-            <div className="col-sm-4 col-sm-offset-4">
-             <button className="btn btn-default" type="button" onClick={() => this.handleReset()}>Reset Search</button>
+            <div className="col-xs-11 col-xs-offset-1 col-sm-6 col-sm-offset-1 search-bar">
               <div className="input-group">
                   <input
                     type="text"
@@ -116,6 +110,17 @@ class Search extends Component {
                      <button className="btn btn-default" type="button" onClick={() => this.handleSubmit(this.state.value)}>Search</button>
                    </span>
               </div>
+            </div>
+            <div className="col-xs-10 col-sm-3 search-items-per-page">
+              <label>
+                <select value={this.state.itemsPerPage} onChange={this.handleItemsPPChange}>
+                  <option default>10</option>
+                  <option default>20</option>
+                  <option default>30</option>
+                  <option default>40</option>
+                </select>
+                <span className="search-label">Results Per Page</span>
+              </label>
             </div>
           </div>
           <div className="row">

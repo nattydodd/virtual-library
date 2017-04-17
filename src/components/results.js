@@ -92,18 +92,20 @@ class Results extends Component {
         <table className="table-striped results-table">
           <thead>
             <tr>
-              <th onClick={() => this.sortResults()}>Title</th>
-              <th>Subtitle</th>
-              <th>Authors</th>
-              <th>Publication Date</th>
+              <th onClick={() => this.sortResults()}><h3>Title</h3></th>
+              <th><h3>Subtitle</h3></th>
+              <th><h3>Authors</h3></th>
+              <th><h3>Publication Date</h3></th>
             </tr>
           </thead>
           <tbody>
             {this.renderResults(this.state.results[0].items)}
           </tbody>
         </table>
-        <button className={ this.props.startIndex === 0 ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onBackClick() }>Back</button>
-        <button className={ this.props.startIndex + this.props.itemsPerPage >= parseInt(this.state.results[0].totalItems) ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onNextClick() }>Next</button>
+        <div className="button-container">
+          <button className={ this.props.startIndex === 0 ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onBackClick() }>Back</button>
+          <button className={ this.props.startIndex + this.props.itemsPerPage >= parseInt(this.state.results[0].totalItems) ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onNextClick() }>Next</button>
+        </div>  
       </div>
     );
   };

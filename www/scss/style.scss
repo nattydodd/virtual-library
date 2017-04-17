@@ -1,16 +1,35 @@
-// Results Component
+// Main
 
-.result-details td, th {
-  font-size: 14px;
-  max-width: 300px;
-  min-width: 300px;
-  padding: 7px;
-}
+$font-serif: 'Asar', serif;
+$font-sans: 'Abel', sans-serif;
 
-.result-details {
-  table-layout: fixed;
+$primary3: #FF9800;
+$primary3_darken: #e98b00;
+
+@import 'results';
+@import 'search';
+
+html {
+  font-size: 62.5%;
+  body, p, .form-control {
+    font-size: 1.6rem;  /* =14px */
+    font-family: $font-sans !important;
+  }
+  h1, h2, h3 {
+    font-size: 2.4rem; /* =24px */
+    font-family: $font-serif !important;
+  }
 }
 
 .no-button {
   display: none;
+}
+
+.btn-default {
+  background: $primary3 !important;
+  border-color: $primary3_darken !important;
+  margin-right: 5px !important;
+  &:hover {
+    background: $primary3_darken !important;
+  }
 }
