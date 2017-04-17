@@ -36,6 +36,7 @@ class Show extends Component {
 
   render() {
 
+    // if the search returns errors:
     if (this.state.errors !== '') {
       return (
         <div className="container-fluid show-component">
@@ -52,7 +53,7 @@ class Show extends Component {
         </div>
       );
     }
-
+    // if the book has not been fetched yet:
     if (!this.state.book) {
       return (
         <div className="container-fluid show-component">
@@ -66,7 +67,7 @@ class Show extends Component {
         </div>
       );
     }
-
+    // else (the book has been fetched):
     return (
         <div className="container-fluid show-component">
           <div className="row">

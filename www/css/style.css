@@ -33,6 +33,14 @@
 .new-search {
   margin-top: 100px; }
 
+.fa-arrows-v {
+  font-size: 2rem !important;
+  margin-left: 20px;
+  padding: 5px 0; }
+  .fa-arrows-v:hover {
+    cursor: pointer;
+    color: #339cb7 !important; }
+
 .search-items-per-page {
   margin: 10px; }
 

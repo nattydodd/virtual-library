@@ -101,7 +101,11 @@ class Results extends Component {
         <table className="table-striped results-table">
           <thead>
             <tr>
-              <th onClick={() => this.sortResults()}><h2>Title</h2></th>
+              <th>
+                <h2>
+                  Title <i onClick={() => this.sortResults()} className="fa fa-arrows-v" aria-hidden="true"></i>
+                </h2>
+              </th>
               <th><h2>Subtitle</h2></th>
               <th><h2>Authors</h2></th>
               <th><h2>Publication Date</h2></th>
