@@ -11,8 +11,12 @@ class Show extends Component {
     super(props);
 
     this.state = {
+      errors: ''
     }
   }
+
+  // this selected book could also be accessed using this.props.book and the mapStateToProps function,
+  // but I changed it because it would not work on page refresh
 
   componentDidMount() {
     const request = axios.get(`https://www.googleapis.com/books/v1/volumes/${this.props.routeParams.id}?key=${GB_API_KEY}`)
@@ -24,10 +28,30 @@ class Show extends Component {
       })
       .catch((err) => {
         console.log(err);
+        this.setState({
+          errors : err.response.data.error.message
+        });
       });
   }
 
   render() {
+
+    if (this.state.errors !== '') {
+      return (
+        <div className="container-fluid show-component">
+          <div className="row">
+            <div className="col-sm-6 col-sm-offset-3 show-details-container">
+              <div className="show-errors">
+                <h3>Error: {this.state.errors}</h3>
+                <Link className="show-back btn btn-default" to="/search">
+                  Back
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     if (!this.state.book) {
       return (

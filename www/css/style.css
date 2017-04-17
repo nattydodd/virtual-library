@@ -76,8 +76,9 @@ hr {
 .show-back-container {
   text-align: center; }
 
-.show-loading {
-  text-align: center; }
+.show-loading, .show-errors {
+  text-align: center;
+  margin: 50px; }
 
 .show-details-container {
   margin-top: 80px;
