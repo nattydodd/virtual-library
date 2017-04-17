@@ -11,7 +11,7 @@ export const SET_START_INDEX = 'SET_START_INDEX';
 export const RESET_START_INDEX = 'RESET_START_INDEX';
 export const SET_ITEMS_PP = 'SET_ITEMS_PP';
 
-const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
+export const GB_API_KEY = 'AIzaSyBTY_vXOKm2K13_QdWesWxjis-exsjBKv4'
 
 export function setItemsPP(number) {
   return {
@@ -56,7 +56,6 @@ function errorMessage(err) {
 
 export function fetchBooks(props, startIndex, itemsPerPage) {
   var searchQuery = ''
-  console.log(`fetching props:`, props)
   if (props != undefined) {
     searchQuery = props.split(' ').join('+');
   }
@@ -74,6 +73,7 @@ export function fetchBooks(props, startIndex, itemsPerPage) {
       });
   }
 }
+
 
 function resetResults() {
   return {

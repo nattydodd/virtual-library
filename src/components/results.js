@@ -17,7 +17,6 @@ class Results extends Component {
 
 
   componentWillReceiveProps(nextprops) {
-    console.log(nextprops);
     if (nextprops.results) {
       this.setState({
         results : nextprops.results,
@@ -27,9 +26,8 @@ class Results extends Component {
   }
 
   handleSelect(book) {
-    console.log(book);
     this.props.selectBook(book);
-    this.context.router.push(`/books/${book.id}`);
+    this.context.router.push(`/${book.id}`);
   }
 
   sortResults() {
@@ -60,7 +58,7 @@ class Results extends Component {
 
 
   render() {
-
+    // if there are errors with the search
     if (this.props.errors !== '') {
       return (
         <div className="container-fluid invalid">

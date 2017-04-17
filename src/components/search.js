@@ -32,7 +32,7 @@ class Search extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    console.log(`nextprops`, nextprops.searchTerm);
+    // if there is a new search, update the state
       this.setState({
         value : nextprops.searchTerm
       });
@@ -57,7 +57,7 @@ class Search extends Component {
   }
 
   handleKeyPress(target) {
-    console.log(target)
+    // if the user pushes the enter key instead of the search button
     if (target.charCode == 13) {
       this.props.requestResults();
       this.props.fetchBooks(this.state.value, 0, this.state.itemsPerPage);
@@ -68,6 +68,7 @@ class Search extends Component {
   }
 
   handleItemsPPChange(event) {
+    // if items per page changes
     this.props.setItemsPP(parseInt(event.target.value));
     this.props.fetchBooks(this.state.value, this.state.startIndex, event.target.value);
     this.setState({
@@ -77,6 +78,7 @@ class Search extends Component {
 
 
   handleNext() {
+    // if the user pushes the next button
     this.props.requestResults();
     var newStartIndex = this.state.startIndex + this.state.itemsPerPage;
     newStartIndex = newStartIndex < 0 ? 0 : newStartIndex;
@@ -88,9 +90,10 @@ class Search extends Component {
     })
   }
 
-  // handleNext and handleBack could be refactored into one function
+  // refactor: handleNext and handleBack could be refactored into one function
 
   handleBack() {
+    // if the user pushes the back button
     this.props.requestResults();
     var newStartIndex = this.state.startIndex - this.state.itemsPerPage;
     newStartIndex = newStartIndex < 0 ? 0 : newStartIndex;
@@ -111,7 +114,7 @@ class Search extends Component {
               <div className="search-intro-text">
                 <h1>Search the Google Books library</h1>
                 <h4>Enter your search term below and browse through the results. Click on a result to view more details.</h4>
-              </div>  
+              </div>
             </div>
             <div className="col-xs-6 col-sm-3 search-reset">
               <Link className="btn btn-primary" to="/">Home</Link>

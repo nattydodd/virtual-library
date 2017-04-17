@@ -25,9 +25,4 @@ module.exports = {
       path.join(__dirname, 'node_modules'),
     ],
   },
-  devServer: {
-      historyApiFallback:{
-          index: './www/index.html'
-      },
-  },
 };

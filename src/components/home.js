@@ -10,7 +10,7 @@ export default class Home extends Component {
         <div className="row home-component">
           <div className="col-sm-6 col-sm-offset-3">
             <h1 className="home-title">Welcome to this Google Books Application</h1>
-            <h4 className="home-subtitle">This application was built using React.js and Redux, compiled using Webpack & Babel,
+            <h4 className="home-subtitle">This search engine was built using React.js and Redux, compiled using Webpack & Babel,
             and styled using SASS. It is also responsive - give it try!</h4>
             <hr />
             <p>The decision to use Redux instead of passing the entire state down directly from parent to child through props, was

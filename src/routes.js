@@ -10,6 +10,6 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="/search" component={Search} />
-    <Route path="books/:id" component={Show} />
+    <Route path="/:id" component={Show} />
   </Route>
 );
