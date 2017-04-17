@@ -63,32 +63,39 @@ class Results extends Component {
 
     if (this.props.errors !== '') {
       return (
-        <div>Invalid Search: {this.props.errors}</div>
+        <div className="container-fluid">
+          Invalid Search: {this.props.errors}
+        </div>
       );
     }
     // if the search is in process but hasn't found results yet
     if (this.props.isFetching) {
       return (
-        <div>Loading</div>
+        <div className="container-fluid">
+          Loading
+        </div>
       );
     }
     // If the search hasn't started yet
     if (this.state.results === undefined || this.state.results.length === 0) {
       return (
-        <div></div>
+        <div className="container-fluid">
+        </div>
       );
     }
     // If the search has returned no results
     if (this.state.results[0].totalItems === 0 ) {
       return (
-        <div>No Results Found</div>
+        <div className="container-fluid">
+          No Results Found
+        </div>
       );
     }
 
 
     // If the search returns results
     return (
-      <div className="results-component">
+      <div className="container-fluid results-component">
         <table className="table-striped results-table">
           <thead>
             <tr>
@@ -105,7 +112,7 @@ class Results extends Component {
         <div className="button-container">
           <button className={ this.props.startIndex === 0 ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onBackClick() }>Back</button>
           <button className={ this.props.startIndex + this.props.itemsPerPage >= parseInt(this.state.results[0].totalItems) ? 'no-button' : 'btn btn-default'} onClick={() => this.props.onNextClick() }>Next</button>
-        </div>  
+        </div>
       </div>
     );
   };

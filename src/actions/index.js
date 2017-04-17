@@ -56,6 +56,7 @@ function errorMessage(err) {
 
 export function fetchBooks(props, startIndex, itemsPerPage) {
   var searchQuery = ''
+  console.log(`fetching props:`, props)
   if (props != undefined) {
     searchQuery = props.split(' ').join('+');
   }
