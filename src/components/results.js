@@ -79,7 +79,11 @@ class Results extends Component {
     // If the search hasn't started yet
     if (this.state.results === undefined || this.state.results.length === 0) {
       return (
-        <div className="container-fluid">
+        <div className="container-fluid new-search">
+          <div className="image-container">
+            <img src="http://i.imgur.com/vwIJD8x.png" />
+            <p>Hope you find what you are looking for!</p>
+          </div>
         </div>
       );
     }
