@@ -127,9 +127,7 @@ function mapStateToProps(state) {
   return {
     results : state.results,
     isFetching : state.isFetching,
-    errors : state.errors,
-    itemsPerPage : state.itemsPerPage,
-    startIndex : state.startIndex
+    errors : state.errors
   };
 }
 

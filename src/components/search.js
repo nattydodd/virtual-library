@@ -18,6 +18,7 @@ class Search extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleItemsPPChange = this.handleItemsPPChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +26,7 @@ class Search extends Component {
     // fetch the same results from the previous search
     if (this.state.value !== '') {
       this.props.requestResults();
-      this.props.fetchBooks(this.state.value[0], this.state.startIndex, this.state.itemsPerPage)
+      this.props.fetchBooks(this.state.value, this.state.startIndex, this.state.itemsPerPage)
     }
   }
 
@@ -51,12 +52,23 @@ class Search extends Component {
     this.props.fetchBooks(value, 0, this.state.itemsPerPage);
     this.setState({
       startIndex : 0
-    })
+    });
+  }
+
+  handleKeyPress(target) {
+    console.log(target)
+    if (target.charCode == 13) {
+      this.props.requestResults();
+      this.props.fetchBooks(this.state.value, 0, this.state.itemsPerPage);
+      this.setState({
+        startIndex : 0
+      });
+    }
   }
 
   handleItemsPPChange(event) {
     this.props.setItemsPP(parseInt(event.target.value));
-    this.props.fetchBooks(this.state.value[0], this.state.startIndex, event.target.value);
+    this.props.fetchBooks(this.state.value, this.state.startIndex, event.target.value);
     this.setState({
       itemsPerPage : parseInt(event.target.value)
     });
@@ -68,7 +80,7 @@ class Search extends Component {
     var newStartIndex = this.state.startIndex + this.state.itemsPerPage;
     newStartIndex = newStartIndex < 0 ? 0 : newStartIndex;
     this.props.setStartIndex(newStartIndex);
-    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage);
+    this.props.fetchBooks(this.state.value, newStartIndex, this.state.itemsPerPage);
 
     this.setState({
       startIndex : newStartIndex
@@ -82,7 +94,7 @@ class Search extends Component {
     var newStartIndex = this.state.startIndex - this.state.itemsPerPage;
     newStartIndex = newStartIndex < 0 ? 0 : newStartIndex;
     this.props.setStartIndex(newStartIndex);
-    this.props.fetchBooks(this.state.value[0], newStartIndex, this.state.itemsPerPage);
+    this.props.fetchBooks(this.state.value, newStartIndex, this.state.itemsPerPage);
 
     this.setState({
       startIndex : newStartIndex
@@ -104,7 +116,8 @@ class Search extends Component {
                     className="form-control"
                     placeholder="Search for a book"
                     onChange={this.handleChange}
-                    value={this.state.value} />
+                    value={this.state.value}
+                    onKeyPress={this.handleKeyPress} />
 
                     <span className="input-group-btn">
                      <button className="btn btn-default" type="button" onClick={() => this.handleSubmit(this.state.value)}>Search</button>
@@ -126,7 +139,9 @@ class Search extends Component {
           <div className="row">
             <Results
              onNextClick = {this.handleNext.bind(this)}
-             onBackClick = {this.handleBack.bind(this)} />
+             onBackClick = {this.handleBack.bind(this)}
+             itemsPerPage = {this.state.itemsPerPage}
+             startIndex = {this.state.startIndex } />
           </div>
         </div>
     );
