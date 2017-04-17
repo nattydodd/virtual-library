@@ -14,6 +14,7 @@ $secondary2: #fff2de;
 @import 'results';
 @import 'search';
 @import 'home';
+@import 'show';
 
 html {
   font-size: 62.5%;
@@ -22,7 +23,7 @@ html {
     font-family: $font-sans !important;
   }
   h3 {
-    font-size: 2.4rem; /* =24px */
+    font-size: 1.9rem; /* =24px */
     font-family: $font-serif !important;
   }
   h1 {
@@ -30,7 +31,7 @@ html {
     font-family: $font-serif !important;
   }
   h2 {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     font-family: $font-serif !important;
   }
 }

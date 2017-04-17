@@ -64,7 +64,7 @@ class Results extends Component {
     if (this.props.errors !== '') {
       return (
         <div className="container-fluid invalid">
-          <h3>Invalid Search: {this.props.errors}</h3>
+          <h2>Invalid Search: {this.props.errors}</h2>
         </div>
       );
     }
@@ -72,7 +72,7 @@ class Results extends Component {
     if (this.props.isFetching) {
       return (
         <div className="container-fluid is-fetching">
-          <h3>Loading...</h3>
+          <h2>Loading...</h2>
         </div>
       );
     }
@@ -87,7 +87,7 @@ class Results extends Component {
     if (this.state.results[0].totalItems === 0 ) {
       return (
         <div className="container-fluid no-results">
-          <h3>Sorry, No Results Found.</h3>
+          <h2>Sorry, No Results Found.</h2>
         </div>
       );
     }
@@ -99,10 +99,10 @@ class Results extends Component {
         <table className="table-striped results-table">
           <thead>
             <tr>
-              <th onClick={() => this.sortResults()}><h3>Title</h3></th>
-              <th><h3>Subtitle</h3></th>
-              <th><h3>Authors</h3></th>
-              <th><h3>Publication Date</h3></th>
+              <th onClick={() => this.sortResults()}><h2>Title</h2></th>
+              <th><h2>Subtitle</h2></th>
+              <th><h2>Authors</h2></th>
+              <th><h2>Publication Date</h2></th>
             </tr>
           </thead>
           <tbody>
