@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import { fetchBooks, resetSearch, requestResults, setStartIndex, setItemsPP } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -31,6 +31,7 @@ class Search extends Component {
     }
   }
 
+
   componentWillReceiveProps(nextprops) {
     // if there is a new search, update the state
       this.setState({
@@ -46,6 +47,11 @@ class Search extends Component {
 
   handleReset() {
     this.props.resetSearch();
+  }
+
+  goToHome() {
+    this.props.resetSearch();
+    this.context.router.push('/');
   }
 
   handleSubmit(value) {
@@ -117,7 +123,7 @@ class Search extends Component {
               </div>
             </div>
             <div className="col-xs-6 col-sm-3 search-reset">
-              <Link className="btn btn-primary" to="/">Home</Link>
+              <button className="btn btn-primary" onClick={() => this.goToHome()}>Home</button>
               <button className="btn btn-default" type="button" onClick={() => this.handleReset()}>Reset Search</button>
             </div>
             <div className="col-xs-11 col-xs-offset-1 col-sm-6 col-sm-offset-1 search-bar">
@@ -158,6 +164,10 @@ class Search extends Component {
     );
   }
 }
+
+Search.contextTypes = {
+  router: PropTypes.object
+};
 
 
 function mapDispatchToProps(dispatch) {

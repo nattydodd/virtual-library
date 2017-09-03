@@ -55,6 +55,7 @@ function errorMessage(err) {
 }
 
 export function fetchBooks(props, startIndex, itemsPerPage) {
+  console.log(startIndex/itemsPerPage);
   var searchQuery = ''
   if (props != undefined) {
     searchQuery = props.split(' ').join('+');
@@ -66,8 +67,8 @@ export function fetchBooks(props, startIndex, itemsPerPage) {
         dispatch(storeSearchTerm(props));
       })
       .catch((err) => {
-        console.log(`fail:`, err.response);
-        if (err.response.status === 400) {
+        console.log(`fail:`, err);
+        if (err.response && err.response.status === 400) {
           dispatch(errorMessage(err));
         }
       });

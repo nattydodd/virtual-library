@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { selectBook } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
+const sortingState = {
+  initial : 'initial',
+  ascending : 'ascending',
+  descending : 'descending'
+}
+
 class Results extends Component {
 
   constructor(props) {
@@ -11,7 +17,7 @@ class Results extends Component {
 
     this.state = {
       results: [],
-      sorted: 'initial'
+      sorted: sortingState.initial
     }
   }
 
@@ -20,7 +26,7 @@ class Results extends Component {
     if (nextprops.results) {
       this.setState({
         results : nextprops.results,
-        sorted: 'initial'
+        sorted: sortingState.initial
       });
     }
   }
@@ -31,14 +37,20 @@ class Results extends Component {
   }
 
   sortResults() {
-    var toggleSorting = this.state.sorted === 'initial' || 'ascending' ? 'descending' : 'ascending'
+
+    var toggleSorting = this.state.sorted === sortingState.initial || sortingState.ascending ? sortingState.descending : storingState.ascending
     this.setState({
       sorted : toggleSorting
     });
   }
 
+  renderDate(date) {
+    var dateArray = date.split('-');
+    return dateArray[0];
+  }
+
   renderResults(results) {
-    if (this.state.sorted !== 'initial') {
+    if (this.state.sorted !== sortingState.initial) {
       results = results.reverse();
     }
     return results.map((book) => {
@@ -50,7 +62,7 @@ class Results extends Component {
             <td>{book.volumeInfo.title}</td>
             <td>{book.volumeInfo.subtitle}</td>
             <td>{book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'N/A' }</td>
-            <td>{book.volumeInfo.publishedDate}</td>
+            <td>{this.renderDate(book.volumeInfo.publishedDate)}</td>
           </tr>
       );
     });
@@ -58,6 +70,7 @@ class Results extends Component {
 
 
   render() {
+
     // if there are errors with the search
     if (this.props.errors !== '') {
       return (
