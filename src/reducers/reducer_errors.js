@@ -7,7 +7,6 @@ const INITIAL_STATE = '';
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case ERROR_MESSAGE:
-    console.log(`in reducer:`, action.payload);
       return state = action.payload.error.message
     case RESET_SEARCH:
       return state = ''
