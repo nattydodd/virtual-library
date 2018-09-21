@@ -6,6 +6,7 @@ Room for improvement:
 - Responsiveness on large screen could be improved.
 - Code refactoring could be improved, components could be broken down into smaller ones
 - Testing
+- Legacy CSS has !importants which need to go
 
 Setup
 * $ npm install
